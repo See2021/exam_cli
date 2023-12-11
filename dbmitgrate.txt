@@ -1,0 +1,48 @@
+
+
+ CREATE TABLE `Product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `admin_id` int NOT NULL,
+  `pname` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `descript` varchar(255) NOT NULL,
+  `status` int NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `admin_id` (`admin_id`),
+  CONSTRAINT `Product_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `Admin` (`id`)
+)
+
+
+CREATE TABLE `Users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `admin_id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `img` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `admin_id` (`admin_id`),
+  CONSTRAINT `Users_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `Admin` (`id`)
+)
+
+CREATE TABLE `Categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `admin_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `descript` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `admin_id` (`admin_id`),
+  CONSTRAINT `Categories_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `Admin` (`id`)
+)
+
+CREATE TABLE `Admin` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+)
